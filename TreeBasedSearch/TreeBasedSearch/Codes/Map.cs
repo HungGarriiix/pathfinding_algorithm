@@ -45,7 +45,7 @@ namespace TreeBasedSearch.Codes
             {
                 for (int j = 0; j < Columns; j++)
                 {
-                    _grid[i, j] = new Cell(i, j); // Default as free space (null)
+                    _grid[i, j] = new Cell(i, j); // Default as free space (Path)
                 }
             }
 

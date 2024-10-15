@@ -31,6 +31,7 @@
             lblFilePath = new Label();
             tbxFilePath = new TextBox();
             btnGenerateMap = new Button();
+            tlpMap = new TableLayoutPanel();
             SuspendLayout();
             // 
             // lblFilePath
@@ -59,11 +60,25 @@
             btnGenerateMap.UseVisualStyleBackColor = true;
             btnGenerateMap.Click += btnGenerateMap_Click;
             // 
+            // tlpMap
+            // 
+            tlpMap.ColumnCount = 2;
+            tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpMap.Location = new Point(12, 100);
+            tlpMap.Name = "tlpMap";
+            tlpMap.RowCount = 2;
+            tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpMap.Size = new Size(945, 431);
+            tlpMap.TabIndex = 3;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(969, 543);
+            Controls.Add(tlpMap);
             Controls.Add(btnGenerateMap);
             Controls.Add(tbxFilePath);
             Controls.Add(lblFilePath);
@@ -78,5 +93,6 @@
         private Label lblFilePath;
         private TextBox tbxFilePath;
         private Button btnGenerateMap;
+        private TableLayoutPanel tlpMap;
     }
 }
