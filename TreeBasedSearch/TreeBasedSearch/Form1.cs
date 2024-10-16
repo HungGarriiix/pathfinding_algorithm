@@ -23,10 +23,9 @@ namespace TreeBasedSearch
         {
             if (map != null)
             {
-                PathFinder pf = new PathFinder(map);
+                PathFinder pf = new DFS(map);
                 pf.Search();
             }
-            map.ResetVisited();
         }
     }
 }

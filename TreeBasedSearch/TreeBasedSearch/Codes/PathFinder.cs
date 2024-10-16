@@ -6,20 +6,15 @@ using System.Threading.Tasks;
 
 namespace TreeBasedSearch.Codes
 {
-    public class PathFinder
+    public abstract class PathFinder
     {
-        private Map _map;
-/*        private List<Cell> _visited;
-        private Stack<Node> _stack;*/
-        private Node _start;
-        private Dictionary<Direction, Coordinate> _directions;
+        protected Map _map;
+        protected Node _start;
+        protected Dictionary<Direction, Coordinate> _directions;
 
-
-        public PathFinder(Map map) 
+        protected PathFinder(Map map) 
         {
             _map = map;
-/*            _visited = new List<Cell>();
-            _stack = new Stack<Node>();*/
             _start = new Node(_map.Start, Direction.NONE);
 
             _directions = new Dictionary<Direction, Coordinate>
@@ -31,33 +26,15 @@ namespace TreeBasedSearch.Codes
             };
         }
 
+        public abstract bool Move(Node source);
+
         public void Search()
         {
-            if (!DFS(_start))
+            if (!Move(_start))
             {
                 Console.WriteLine("No path found.");
             }
-        }
-
-        public bool DFS(Node source)
-        {
-            source.CurrentCell.IsVisited = true;
-
-            if (source.CurrentCell.IsGoal)
-            {
-                PrintPath(source);
-                return true;
-            }
-
-            List<Node> neighbors = GetNeighbors(source);
-            foreach (Node node in neighbors) 
-            {
-                bool pathFound = DFS(node); // No return here to leave room for other neighbors
-                if (pathFound) return true; // Exit early if reach goal
-            }
-
-            // If there is no path left (no neighbors left)
-            return false;
+            _map.ResetVisited();
         }
 
         public List<Node> GetNeighbors(Node source)
@@ -88,6 +65,5 @@ namespace TreeBasedSearch.Codes
             path.Reverse();  // Reverse the path to get the correct order
             Console.WriteLine($"[ {string.Join(", ", path)} ]");
         }
-
     }
 }
