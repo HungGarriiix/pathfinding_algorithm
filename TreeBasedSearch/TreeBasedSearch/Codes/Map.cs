@@ -17,6 +17,8 @@ namespace TreeBasedSearch.Codes
             Rows = rows;
             Columns = columns;
             Grid = new Cell[Rows, Columns];
+            Start = null;
+            Goals = new List<Cell>();
 
             CreateMap(start, goals, walls);
         }
@@ -39,6 +41,13 @@ namespace TreeBasedSearch.Codes
             private set { _grid = value; }
         }
 
+        public Cell Start { get; private set; }
+        public List<Cell> Goals { get; private set; }
+        public int MaxX { get { return _rowsNo - 1; } }
+        public int MinX { get { return 0; } }
+        public int MaxY { get { return _columnsNo - 1; } }
+        public int MinY { get { return 0; } }
+
         private void CreateMap(Coordinate start, Coordinate[] goals, Coordinate[] walls)
         {
             for (int i = 0; i < Rows; i++)
@@ -58,6 +67,7 @@ namespace TreeBasedSearch.Codes
         {
             Cell startCell = new Cell(start.X, start.Y, Object.START);
             _grid[start.X, start.Y] = startCell;
+            Start = startCell;
         }
 
         private void AddGoals(Coordinate[] goals)
@@ -66,6 +76,7 @@ namespace TreeBasedSearch.Codes
             {
                 Cell goalCell = new Cell(goal.X, goal.Y, Object.GOAL);
                 _grid[goal.X, goal.Y] = goalCell;
+                Goals.Add(goalCell);
             }
         }
 
@@ -80,6 +91,35 @@ namespace TreeBasedSearch.Codes
                         Cell wallCell = new Cell(x, y, Object.WALL);
                         Grid[x, y] = wallCell;
                     }
+                }
+            }
+        }
+
+        public bool IsAvailable(Coordinate coords)
+        {
+            // Check for out of bound
+            if (!(coords.X <= MaxX && coords.X >= MinX))
+                return false;
+
+            if (!(coords.Y <= MaxY && coords.Y >= MinY))
+                return false;
+
+            // Check for other status
+            Cell loc = Grid[coords.X, coords.Y];
+            /*return loc.IsVisited == false || loc.IsBlocked == false;*/
+            if (loc.IsVisited) return false;
+            if (loc.IsBlocked) return false;
+
+            return true;
+        }
+
+        public void ResetVisited()
+        {
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    _grid[i, j].IsVisited = false;
                 }
             }
         }

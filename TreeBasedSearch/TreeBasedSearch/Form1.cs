@@ -17,7 +17,16 @@ namespace TreeBasedSearch
             IMapParse text = new TextFileParse();
             map = text.ParseMap(tbxFilePath.Text);
             tlp_ui = new MapInTableLayoutPanel(map, tlpMap);
+        }
 
+        private void btnDFS_Click(object sender, EventArgs e)
+        {
+            if (map != null)
+            {
+                PathFinder pf = new PathFinder(map);
+                pf.Search();
+            }
+            map.ResetVisited();
         }
     }
 }

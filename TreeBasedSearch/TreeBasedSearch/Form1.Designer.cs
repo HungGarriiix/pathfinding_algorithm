@@ -32,6 +32,7 @@
             tbxFilePath = new TextBox();
             btnGenerateMap = new Button();
             tlpMap = new TableLayoutPanel();
+            btnDFS = new Button();
             SuspendLayout();
             // 
             // lblFilePath
@@ -73,11 +74,22 @@
             tlpMap.Size = new Size(945, 431);
             tlpMap.TabIndex = 3;
             // 
+            // btnDFS
+            // 
+            btnDFS.Location = new Point(394, 71);
+            btnDFS.Name = "btnDFS";
+            btnDFS.Size = new Size(148, 23);
+            btnDFS.TabIndex = 4;
+            btnDFS.Text = "Depth first search";
+            btnDFS.UseVisualStyleBackColor = true;
+            btnDFS.Click += btnDFS_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(969, 543);
+            Controls.Add(btnDFS);
             Controls.Add(tlpMap);
             Controls.Add(btnGenerateMap);
             Controls.Add(tbxFilePath);
@@ -94,5 +106,6 @@
         private TextBox tbxFilePath;
         private Button btnGenerateMap;
         private TableLayoutPanel tlpMap;
+        private Button btnDFS;
     }
 }

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace TreeBasedSearch.Codes
 {
-    public class MapInTableLayoutPanel
+    public class MapInTableLayoutPanel: IMapUI
     {
         private float _cellWidth;
         private float _cellHeight;
@@ -41,7 +41,6 @@ namespace TreeBasedSearch.Codes
 
         public void ClearMap()
         {
-
             for (int i = MapUI.Controls.Count - 1; i >= 0; i--)
             {
                 MapUI.Controls[i].Dispose();

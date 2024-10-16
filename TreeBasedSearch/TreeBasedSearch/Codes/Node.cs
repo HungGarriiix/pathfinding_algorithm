@@ -8,15 +8,19 @@ namespace TreeBasedSearch.Codes
 {
     public class Node
     {
-        private readonly Cell _currentCell;
-        private readonly Direction _direction;
-        private readonly Node _parent;
+        private Cell _currentCell;
+        private Direction _direction;
+        private Node _parent;
 
-        public Node(Cell currentCell, Direction direction, Node parent)
+        public Node(Cell currentCell, Direction direction, Node parent = null)
         {
             _currentCell = currentCell;
             _direction = direction;
             _parent = parent;
         }
+
+        public Cell CurrentCell { get { return _currentCell; } }
+        public Direction Direction { get { return _direction; } }
+        public Node Parent { get { return _parent;} }
     }
 }

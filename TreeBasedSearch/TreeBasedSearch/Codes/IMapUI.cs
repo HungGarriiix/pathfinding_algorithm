@@ -8,5 +8,9 @@ namespace TreeBasedSearch.Codes
 {
     public interface IMapUI
     {
+        Map GridMap { get; }
+
+        void ClearMap();
+        void DrawMap();
     }
 }
