@@ -9,9 +9,6 @@ namespace TreeBasedSearch.Codes
 {
     public class MapInTableLayoutPanel: IMapUI
     {
-        private float _cellWidth;
-        private float _cellHeight;
-
         public MapInTableLayoutPanel(Map map, TableLayoutPanel mapUI) 
         {
             GridMap = map;
@@ -21,8 +18,6 @@ namespace TreeBasedSearch.Codes
             MapUI.ColumnCount = map.Columns;
             MapUI.RowCount = map.Rows;
             MapUI.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            _cellHeight = MapUI.Size.Height / map.Rows;
-            _cellWidth = MapUI.Size.Width / map.Columns;
 
             for (int i = 0; i < map.Columns; i++)
             {
@@ -61,6 +56,11 @@ namespace TreeBasedSearch.Codes
                     MapUI.Controls.Add(CreateCell(GridMap.Grid[x,y]));
                 }
             }
+
+/*            for (int i = 0; i < MapUI.Controls.Count; i++)
+            {
+                Console.WriteLine($"{i}: {MapUI.Controls[i].BackColor.Name}");
+            }*/
         }
 
         public Panel CreateCell(Cell cell)
@@ -86,6 +86,24 @@ namespace TreeBasedSearch.Codes
                     break;
             }
             return panel;
+        }
+
+        public int GetIndex(Cell position)
+        {
+            return (position.X * (GridMap.Columns)) + position.Y;
+        }
+
+        public void MoveAgent(Cell position)
+        {
+            MapUI.Controls[GetIndex(position)].BackColor = Color.Purple;
+        }
+
+        public void ShowRoute(Cell[] routes)
+        {
+            foreach(Cell node in routes)
+            {
+                MapUI.Controls[GetIndex(node)].BackColor = Color.SkyBlue;
+            }
         }
     }
 }

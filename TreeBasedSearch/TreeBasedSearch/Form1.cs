@@ -6,6 +6,7 @@ namespace TreeBasedSearch
     {
         Map map;
         MapInTableLayoutPanel tlp_ui;
+        PathFinder pf;
 
         public Form1()
         {
@@ -23,7 +24,7 @@ namespace TreeBasedSearch
         {
             if (map != null)
             {
-                PathFinder pf = new DFS(map);
+                pf = new DFS(map, tlp_ui);
                 pf.Search();
             }
         }

@@ -8,7 +8,7 @@ namespace TreeBasedSearch.Codes
 {
     public class DFS: PathFinder
     {
-        public DFS(Map map): base(map)
+        public DFS(Map map, IMapUI mapUI): base(map, mapUI)
         {
                         
         }
@@ -16,6 +16,7 @@ namespace TreeBasedSearch.Codes
         public override bool Move(Node source)
         {
             source.CurrentCell.IsVisited = true;
+            _mapUI.MoveAgent(source.CurrentCell);
 
             if (source.CurrentCell.IsGoal)
             {

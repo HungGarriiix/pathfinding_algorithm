@@ -10,11 +10,13 @@ namespace TreeBasedSearch.Codes
     {
         protected Map _map;
         protected Node _start;
+        protected IMapUI _mapUI;
         protected Dictionary<Direction, Coordinate> _directions;
 
-        protected PathFinder(Map map) 
+        protected PathFinder(Map map, IMapUI mapUI) 
         {
             _map = map;
+            _mapUI = mapUI;
             _start = new Node(_map.Start, Direction.NONE);
 
             _directions = new Dictionary<Direction, Coordinate>
@@ -56,13 +58,17 @@ namespace TreeBasedSearch.Codes
         public void PrintPath(Node goalNode)
         {
             List<string> path = new List<string>();
+            List<Cell> pathCells = new List<Cell>();
             Node current = goalNode;
             while (current != null)
             {
                 path.Add(current.Direction.ToString());
+                pathCells.Add(current.CurrentCell);
                 current = current.Parent;
             }
             path.Reverse();  // Reverse the path to get the correct order
+            pathCells.Reverse(); // Same goes here
+            _mapUI.ShowRoute(pathCells.ToArray());
             Console.WriteLine($"[ {string.Join(", ", path)} ]");
         }
     }
