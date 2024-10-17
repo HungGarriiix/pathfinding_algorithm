@@ -35,31 +35,30 @@
             btnDFS = new Button();
             btnBFS = new Button();
             btnGBFS = new Button();
+            btnAS = new Button();
             SuspendLayout();
             // 
             // lblFilePath
             // 
             lblFilePath.AutoSize = true;
-            lblFilePath.Location = new Point(54, 61);
+            lblFilePath.Location = new Point(47, 46);
             lblFilePath.Name = "lblFilePath";
-            lblFilePath.Size = new Size(67, 20);
+            lblFilePath.Size = new Size(55, 15);
             lblFilePath.TabIndex = 0;
             lblFilePath.Text = "File Path:";
             // 
             // tbxFilePath
             // 
-            tbxFilePath.Location = new Point(123, 57);
-            tbxFilePath.Margin = new Padding(3, 4, 3, 4);
+            tbxFilePath.Location = new Point(108, 43);
             tbxFilePath.Name = "tbxFilePath";
-            tbxFilePath.Size = new Size(319, 27);
+            tbxFilePath.Size = new Size(280, 23);
             tbxFilePath.TabIndex = 1;
             // 
             // btnGenerateMap
             // 
-            btnGenerateMap.Location = new Point(450, 56);
-            btnGenerateMap.Margin = new Padding(3, 4, 3, 4);
+            btnGenerateMap.Location = new Point(394, 42);
             btnGenerateMap.Name = "btnGenerateMap";
-            btnGenerateMap.Size = new Size(169, 31);
+            btnGenerateMap.Size = new Size(148, 23);
             btnGenerateMap.TabIndex = 2;
             btnGenerateMap.Text = "Generate map";
             btnGenerateMap.UseVisualStyleBackColor = true;
@@ -70,21 +69,19 @@
             tlpMap.ColumnCount = 2;
             tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpMap.Location = new Point(14, 173);
-            tlpMap.Margin = new Padding(3, 4, 3, 4);
+            tlpMap.Location = new Point(12, 130);
             tlpMap.Name = "tlpMap";
             tlpMap.RowCount = 2;
             tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpMap.Size = new Size(1186, 661);
+            tlpMap.Size = new Size(1038, 496);
             tlpMap.TabIndex = 3;
             // 
             // btnDFS
             // 
-            btnDFS.Location = new Point(450, 95);
-            btnDFS.Margin = new Padding(3, 4, 3, 4);
+            btnDFS.Location = new Point(394, 71);
             btnDFS.Name = "btnDFS";
-            btnDFS.Size = new Size(169, 31);
+            btnDFS.Size = new Size(148, 23);
             btnDFS.TabIndex = 4;
             btnDFS.Text = "Depth first search";
             btnDFS.UseVisualStyleBackColor = true;
@@ -92,10 +89,9 @@
             // 
             // btnBFS
             // 
-            btnBFS.Location = new Point(625, 95);
-            btnBFS.Margin = new Padding(3, 4, 3, 4);
+            btnBFS.Location = new Point(547, 71);
             btnBFS.Name = "btnBFS";
-            btnBFS.Size = new Size(169, 31);
+            btnBFS.Size = new Size(148, 23);
             btnBFS.TabIndex = 5;
             btnBFS.Text = "Breadth first search";
             btnBFS.UseVisualStyleBackColor = true;
@@ -103,20 +99,30 @@
             // 
             // btnGBFS
             // 
-            btnGBFS.Location = new Point(400, 134);
-            btnGBFS.Margin = new Padding(3, 4, 3, 4);
+            btnGBFS.Location = new Point(350, 100);
             btnGBFS.Name = "btnGBFS";
-            btnGBFS.Size = new Size(219, 31);
+            btnGBFS.Size = new Size(192, 23);
             btnGBFS.TabIndex = 6;
             btnGBFS.Text = "Greedy best first search";
             btnGBFS.UseVisualStyleBackColor = true;
             btnGBFS.Click += btnGBFS_Click;
             // 
+            // btnAS
+            // 
+            btnAS.Location = new Point(547, 101);
+            btnAS.Name = "btnAS";
+            btnAS.Size = new Size(148, 23);
+            btnAS.TabIndex = 7;
+            btnAS.Text = "A* star search";
+            btnAS.UseVisualStyleBackColor = true;
+            btnAS.Click += btnAS_Click;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1212, 847);
+            ClientSize = new Size(1060, 635);
+            Controls.Add(btnAS);
             Controls.Add(btnGBFS);
             Controls.Add(btnBFS);
             Controls.Add(btnDFS);
@@ -124,7 +130,6 @@
             Controls.Add(btnGenerateMap);
             Controls.Add(tbxFilePath);
             Controls.Add(lblFilePath);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -140,5 +145,6 @@
         private Button btnDFS;
         private Button btnBFS;
         private Button btnGBFS;
+        private Button btnAS;
     }
 }

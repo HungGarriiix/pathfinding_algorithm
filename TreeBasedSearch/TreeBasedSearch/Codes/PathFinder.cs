@@ -36,6 +36,7 @@ namespace TreeBasedSearch.Codes
             // Distance: Euclidean method
             return (int)targets.Min(target =>
                 Math.Sqrt(Math.Pow(target.X - source.X, 2) + Math.Pow(target.Y - source.Y, 2)));
+            // P/s: Why int? - Because I prefer rounded numbers
         }
 
         public void Search()

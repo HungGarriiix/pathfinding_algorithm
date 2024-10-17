@@ -46,5 +46,14 @@ namespace TreeBasedSearch
                 pf.Search();
             }
         }
+
+        private void btnAS_Click(object sender, EventArgs e)
+        {
+            if (map != null)
+            {
+                pf = new AS(map, tlp_ui);
+                pf.Search();
+            }
+        }
     }
 }
