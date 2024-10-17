@@ -33,29 +33,32 @@
             btnGenerateMap = new Button();
             tlpMap = new TableLayoutPanel();
             btnDFS = new Button();
+            btnBFS = new Button();
             SuspendLayout();
             // 
             // lblFilePath
             // 
             lblFilePath.AutoSize = true;
-            lblFilePath.Location = new Point(47, 46);
+            lblFilePath.Location = new Point(54, 61);
             lblFilePath.Name = "lblFilePath";
-            lblFilePath.Size = new Size(55, 15);
+            lblFilePath.Size = new Size(67, 20);
             lblFilePath.TabIndex = 0;
             lblFilePath.Text = "File Path:";
             // 
             // tbxFilePath
             // 
-            tbxFilePath.Location = new Point(108, 43);
+            tbxFilePath.Location = new Point(123, 57);
+            tbxFilePath.Margin = new Padding(3, 4, 3, 4);
             tbxFilePath.Name = "tbxFilePath";
-            tbxFilePath.Size = new Size(280, 23);
+            tbxFilePath.Size = new Size(319, 27);
             tbxFilePath.TabIndex = 1;
             // 
             // btnGenerateMap
             // 
-            btnGenerateMap.Location = new Point(394, 42);
+            btnGenerateMap.Location = new Point(450, 56);
+            btnGenerateMap.Margin = new Padding(3, 4, 3, 4);
             btnGenerateMap.Name = "btnGenerateMap";
-            btnGenerateMap.Size = new Size(148, 23);
+            btnGenerateMap.Size = new Size(169, 31);
             btnGenerateMap.TabIndex = 2;
             btnGenerateMap.Text = "Generate map";
             btnGenerateMap.UseVisualStyleBackColor = true;
@@ -66,34 +69,49 @@
             tlpMap.ColumnCount = 2;
             tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpMap.Location = new Point(12, 100);
+            tlpMap.Location = new Point(14, 133);
+            tlpMap.Margin = new Padding(3, 4, 3, 4);
             tlpMap.Name = "tlpMap";
             tlpMap.RowCount = 2;
             tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpMap.Size = new Size(945, 431);
+            tlpMap.Size = new Size(1080, 575);
             tlpMap.TabIndex = 3;
             // 
             // btnDFS
             // 
-            btnDFS.Location = new Point(394, 71);
+            btnDFS.Location = new Point(450, 95);
+            btnDFS.Margin = new Padding(3, 4, 3, 4);
             btnDFS.Name = "btnDFS";
-            btnDFS.Size = new Size(148, 23);
+            btnDFS.Size = new Size(169, 31);
             btnDFS.TabIndex = 4;
             btnDFS.Text = "Depth first search";
             btnDFS.UseVisualStyleBackColor = true;
             btnDFS.Click += btnDFS_Click;
             // 
+            // btnBFS
+            // 
+            btnBFS.Location = new Point(625, 95);
+            btnBFS.Margin = new Padding(3, 4, 3, 4);
+            btnBFS.Name = "btnBFS";
+            btnBFS.Size = new Size(169, 31);
+            btnBFS.TabIndex = 5;
+            btnBFS.Text = "Breadth first search";
+            btnBFS.UseVisualStyleBackColor = true;
+            btnBFS.Click += btnBFS_Click;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(969, 543);
+            ClientSize = new Size(1107, 724);
+            Controls.Add(btnBFS);
             Controls.Add(btnDFS);
             Controls.Add(tlpMap);
             Controls.Add(btnGenerateMap);
             Controls.Add(tbxFilePath);
             Controls.Add(lblFilePath);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -107,5 +125,6 @@
         private Button btnGenerateMap;
         private TableLayoutPanel tlpMap;
         private Button btnDFS;
+        private Button btnBFS;
     }
 }

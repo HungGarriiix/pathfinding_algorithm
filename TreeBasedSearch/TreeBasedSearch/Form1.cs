@@ -28,5 +28,14 @@ namespace TreeBasedSearch
                 pf.Search();
             }
         }
+
+        private void btnBFS_Click(object sender, EventArgs e)
+        {
+            if (map != null)
+            {
+                pf = new BFS(map, tlp_ui);
+                pf.Search();
+            }
+        }
     }
 }

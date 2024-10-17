@@ -10,7 +10,7 @@ namespace TreeBasedSearch.Codes
     {
         public DFS(Map map, IMapUI mapUI): base(map, mapUI)
         {
-                        
+
         }
 
         public override bool Move(Node source)
