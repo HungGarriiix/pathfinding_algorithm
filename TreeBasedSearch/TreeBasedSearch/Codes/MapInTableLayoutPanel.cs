@@ -14,6 +14,8 @@ namespace TreeBasedSearch.Codes
             GridMap = map;
             MapUI = mapUI;
 
+            // Clean the map everytime a new map is loaded
+            // to ensure no fautly under any circumstances
             ClearMap();
             MapUI.ColumnCount = map.Columns;
             MapUI.RowCount = map.Rows;

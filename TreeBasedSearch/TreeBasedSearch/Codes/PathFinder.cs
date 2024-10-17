@@ -40,6 +40,7 @@ namespace TreeBasedSearch.Codes
 
         public void Search()
         {
+            // Start moving from the start node
             if (!Move(_start))
             {
                 Console.WriteLine("No path found.");
@@ -56,7 +57,7 @@ namespace TreeBasedSearch.Codes
                 if (_map.IsAvailable(newCoords))
                 {
                     Cell cell = _map.Grid[newCoords.X, newCoords.Y];
-                    Node node = new Node(cell, direction.Key, source, 
+                    Node node = new Node(cell, direction.Key, source.Distance + 1, source, 
                         GetHeuristic(cell, _map.Goals));
                     neighbors.Add(node);
                 }
@@ -70,6 +71,7 @@ namespace TreeBasedSearch.Codes
             List<string> path = new List<string>();
             List<Cell> pathCells = new List<Cell>();
             Node current = goalNode;
+            Console.WriteLine(goalNode.Distance);
             while (current != null)
             {
                 path.Add(current.Direction.ToString());
