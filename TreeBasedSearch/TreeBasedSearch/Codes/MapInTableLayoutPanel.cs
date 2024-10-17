@@ -53,14 +53,9 @@ namespace TreeBasedSearch.Codes
             {
                 for (int y = 0; y < GridMap.Columns; y++)
                 {
-                    MapUI.Controls.Add(CreateCell(GridMap.Grid[x,y]));
+                    MapUI.Controls.Add(CreateCell(GridMap.Grid[x, y]));
                 }
             }
-
-/*            for (int i = 0; i < MapUI.Controls.Count; i++)
-            {
-                Console.WriteLine($"{i}: {MapUI.Controls[i].BackColor.Name}");
-            }*/
         }
 
         public Panel CreateCell(Cell cell)

@@ -30,6 +30,14 @@ namespace TreeBasedSearch.Codes
 
         public abstract bool Move(Node source);
 
+        public int GetHeuristic(Cell source, Cell[] targets)
+        {
+            // Heuristic value must be admissive (underestimating, get minimum) for all goals
+            // Distance: Euclidean method
+            return (int)targets.Min(target =>
+                Math.Sqrt(Math.Pow(target.X - source.X, 2) + Math.Pow(target.Y - source.Y, 2)));
+        }
+
         public void Search()
         {
             if (!Move(_start))
@@ -47,7 +55,9 @@ namespace TreeBasedSearch.Codes
                 Coordinate newCoords = Coordinate.GetNewMove(source.CurrentCell, direction.Value);
                 if (_map.IsAvailable(newCoords))
                 {
-                    Node node = new Node(_map.Grid[newCoords.X, newCoords.Y], direction.Key, source);
+                    Cell cell = _map.Grid[newCoords.X, newCoords.Y];
+                    Node node = new Node(cell, direction.Key, source, 
+                        GetHeuristic(cell, _map.Goals));
                     neighbors.Add(node);
                 }
             }

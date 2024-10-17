@@ -18,7 +18,6 @@ namespace TreeBasedSearch.Codes
             Columns = columns;
             Grid = new Cell[Rows, Columns];
             Start = null;
-            Goals = new List<Cell>();
 
             CreateMap(start, goals, walls);
         }
@@ -42,7 +41,7 @@ namespace TreeBasedSearch.Codes
         }
 
         public Cell Start { get; private set; }
-        public List<Cell> Goals { get; private set; }
+        public Cell[] Goals { get; private set; }
         public int MaxX { get { return _rowsNo - 1; } }
         public int MinX { get { return 0; } }
         public int MaxY { get { return _columnsNo - 1; } }
@@ -72,12 +71,14 @@ namespace TreeBasedSearch.Codes
 
         private void AddGoals(Coordinate[] goals)
         {
+            List<Cell> goalsList = new List<Cell>();
             foreach (Coordinate goal in goals)
             {
                 Cell goalCell = new Cell(goal.X, goal.Y, Object.GOAL);
                 _grid[goal.X, goal.Y] = goalCell;
-                Goals.Add(goalCell);
+                goalsList.Add(goalCell);
             }
+            Goals = goalsList.ToArray();
         }
 
         private void AddObstacles(Coordinate[] walls)

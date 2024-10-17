@@ -23,10 +23,8 @@ namespace TreeBasedSearch.Codes
             {
                 Node currentNode = queue.Dequeue();
 
-                // Check if we reached the goal
                 if (currentNode.CurrentCell.IsGoal)
                 {
-                    Console.WriteLine("Goal found!");
                     PrintPath(currentNode);
                     return true;
                 }
@@ -34,12 +32,9 @@ namespace TreeBasedSearch.Codes
                 List<Node> neighbors = GetNeighbors(currentNode);
                 foreach (Node neighbor in neighbors)
                 {
-                    if (!neighbor.CurrentCell.IsVisited)
-                    {
-                        neighbor.CurrentCell.IsVisited = true;
-                        _mapUI.MoveAgent(neighbor.CurrentCell);
-                        queue.Enqueue(neighbor);
-                    }
+                    neighbor.CurrentCell.IsVisited = true;
+                    _mapUI.MoveAgent(neighbor.CurrentCell);
+                    queue.Enqueue(neighbor);
                 }
             }
 

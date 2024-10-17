@@ -34,6 +34,7 @@
             tlpMap = new TableLayoutPanel();
             btnDFS = new Button();
             btnBFS = new Button();
+            btnGBFS = new Button();
             SuspendLayout();
             // 
             // lblFilePath
@@ -69,13 +70,13 @@
             tlpMap.ColumnCount = 2;
             tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpMap.Location = new Point(14, 133);
+            tlpMap.Location = new Point(14, 173);
             tlpMap.Margin = new Padding(3, 4, 3, 4);
             tlpMap.Name = "tlpMap";
             tlpMap.RowCount = 2;
             tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpMap.Size = new Size(1080, 575);
+            tlpMap.Size = new Size(1186, 661);
             tlpMap.TabIndex = 3;
             // 
             // btnDFS
@@ -100,11 +101,23 @@
             btnBFS.UseVisualStyleBackColor = true;
             btnBFS.Click += btnBFS_Click;
             // 
+            // btnGBFS
+            // 
+            btnGBFS.Location = new Point(400, 134);
+            btnGBFS.Margin = new Padding(3, 4, 3, 4);
+            btnGBFS.Name = "btnGBFS";
+            btnGBFS.Size = new Size(219, 31);
+            btnGBFS.TabIndex = 6;
+            btnGBFS.Text = "Greedy best first search";
+            btnGBFS.UseVisualStyleBackColor = true;
+            btnGBFS.Click += btnGBFS_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1107, 724);
+            ClientSize = new Size(1212, 847);
+            Controls.Add(btnGBFS);
             Controls.Add(btnBFS);
             Controls.Add(btnDFS);
             Controls.Add(tlpMap);
@@ -126,5 +139,6 @@
         private TableLayoutPanel tlpMap;
         private Button btnDFS;
         private Button btnBFS;
+        private Button btnGBFS;
     }
 }
