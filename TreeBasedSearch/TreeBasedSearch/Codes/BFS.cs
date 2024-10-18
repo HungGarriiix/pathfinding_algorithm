@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 namespace TreeBasedSearch.Codes
 {
     public class BFS: PathFinder
-    {
+    {   
+        // Algorithm: Breadth First Search
+        // Traverse nodes expanded within N depth (horizontally) to search for goal
+        // P/s: 
         public BFS(Map map, IMapUI mapUI) : base(map, mapUI)
         {
 
@@ -16,10 +19,12 @@ namespace TreeBasedSearch.Codes
 
         public override bool Move(Node source)
         {
+            // A queue is needed to store expanded nodes
+            // To reduce number of time needed to traverse from branches to branches.
             Queue<Node> queue = new Queue<Node>();
             queue.Enqueue(_start);
 
-            while (queue.Count > 0)
+            while (queue.Count > 0) // Finds until the tree cannot be expanded anymore
             {
                 Node currentNode = queue.Dequeue();
 

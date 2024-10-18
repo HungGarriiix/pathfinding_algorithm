@@ -28,6 +28,7 @@ namespace TreeBasedSearch.Codes
             };
         }
 
+        // Main algorithm goes here (by creating child class of PathFinder and implement this function)
         public abstract bool Move(Node source);
 
         public int GetHeuristic(Cell source, Cell[] targets)
@@ -41,6 +42,9 @@ namespace TreeBasedSearch.Codes
 
         public void Search()
         {
+            // Re-draw the map UI so that it won't overlapses other algorithm path
+            _mapUI.ClearMap();
+            _mapUI.DrawMap();
             // Start moving from the start node
             if (!Move(_start))
             {
@@ -55,7 +59,7 @@ namespace TreeBasedSearch.Codes
             foreach (var direction in _directions)
             {
                 Coordinate newCoords = Coordinate.GetNewMove(source.CurrentCell, direction.Value);
-                if (_map.IsAvailable(newCoords))
+                if (_map.IsAvailable(newCoords))    // Not limited to non-traversable, visited is also listed out
                 {
                     Cell cell = _map.Grid[newCoords.X, newCoords.Y];
                     Node node = new Node(cell, direction.Key, source.Distance + 1, source, 
@@ -73,6 +77,8 @@ namespace TreeBasedSearch.Codes
             List<Cell> pathCells = new List<Cell>();
             Node current = goalNode;
             Console.WriteLine(goalNode.Distance);
+
+            // Now traverse from the goal node to the start node
             while (current != null)
             {
                 path.Add(current.Direction.ToString());

@@ -8,6 +8,9 @@ namespace TreeBasedSearch.Codes
 {
     public class AS: PathFinder
     {
+        // Algorithm: A* (Star) Search
+        // Traversing nodes with lowest F score (distance + heuristic) to find the shortest path with "brain".
+        // P/s: This algorithm focuses on precision than performance (certainly faster than others besides GBFS)
         public AS(Map map, IMapUI mapUI) : base(map, mapUI)
         {
 
@@ -19,7 +22,6 @@ namespace TreeBasedSearch.Codes
             // However, the queue must be sorted frequently per neighbors added, a generic list is more suitable
             List<Node> nodesInQueue = new List<Node>();
             nodesInQueue.Add(source);
-/*            HashSet<Cell> visited = new HashSet<Cell>();*/
 
             while (nodesInQueue.Count > 0)
             {
@@ -27,7 +29,6 @@ namespace TreeBasedSearch.Codes
                 Node prioritizedNode = nodesInQueue[0];
                 prioritizedNode.CurrentCell.IsVisited = true;
                 _mapUI.MoveAgent(prioritizedNode.CurrentCell);
-/*                visited.Add(prioritizedNode.CurrentCell);*/
 
                 if (prioritizedNode.CurrentCell.IsGoal)
                 {

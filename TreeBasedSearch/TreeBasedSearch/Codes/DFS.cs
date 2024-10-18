@@ -8,6 +8,9 @@ namespace TreeBasedSearch.Codes
 {
     public class DFS: PathFinder
     {
+        // Algorithm: Depth First Search
+        // Finds a path by expanding a node branch until a gooal is reached
+        // P/s: 
         public DFS(Map map, IMapUI mapUI): base(map, mapUI)
         {
 
@@ -24,6 +27,7 @@ namespace TreeBasedSearch.Codes
                 return true;
             }
 
+            // Just go to other neighbors
             List<Node> neighbors = GetNeighbors(source);
             foreach (Node node in neighbors)
             {
