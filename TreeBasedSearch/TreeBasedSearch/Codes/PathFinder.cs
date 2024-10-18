@@ -43,8 +43,7 @@ namespace TreeBasedSearch.Codes
         public void Search()
         {
             // Re-draw the map UI so that it won't overlapses other algorithm path
-            _mapUI.ClearMap();
-            _mapUI.DrawMap();
+            _mapUI.RedrawMap();
             // Start moving from the start node
             if (!Move(_start))
             {

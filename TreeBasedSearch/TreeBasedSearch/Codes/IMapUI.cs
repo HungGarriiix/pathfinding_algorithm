@@ -15,5 +15,6 @@ namespace TreeBasedSearch.Codes
         int GetIndex(Cell position);
         void MoveAgent(Cell position);
         void ShowRoute(Cell[] routes);
+        void RedrawMap();
     }
 }

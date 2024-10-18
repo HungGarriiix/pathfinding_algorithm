@@ -15,9 +15,16 @@ namespace TreeBasedSearch
 
         private void btnGenerateMap_Click(object sender, EventArgs e)
         {
-            IMapParse text = new TextFileParse();
-            map = text.ParseMap(tbxFilePath.Text);
-            tlp_ui = new MapInTableLayoutPanel(map, tlpMap);
+            try
+            {
+                IMapParse text = new TextFileParse();
+                map = text.ParseMap(tbxFilePath.Text);
+                tlp_ui = new MapInTableLayoutPanel(map, tlpMap);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnDFS_Click(object sender, EventArgs e)
@@ -54,6 +61,18 @@ namespace TreeBasedSearch
                 pf = new AS(map, tlp_ui);
                 pf.Search();
             }
+        }
+
+        private void btnFindMap_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Text Files (*.txt)|*.txt",
+                Title = "Open Map File"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                tbxFilePath.Text = openFileDialog.FileName;
         }
     }
 }

@@ -9,25 +9,36 @@ namespace TreeBasedSearch.Codes
 {
     public class MapInTableLayoutPanel: IMapUI
     {
+        private Dictionary<Object, Color> _objectColors;
+        private Color _visitedColor = Color.Purple;
+        private Color _routeColor = Color.SkyBlue;
+
         public MapInTableLayoutPanel(Map map, TableLayoutPanel mapUI) 
         {
             GridMap = map;
             MapUI = mapUI;
-
+            _objectColors = new Dictionary<Object, Color>
+            {
+                { Object.PATH, Color.White},
+                { Object.GOAL, Color.Green },
+                { Object.START, Color.Red },
+                { Object.WALL, Color.DarkGray }
+            };
             // Clean the map everytime a new map is loaded
             // to ensure no fautly under any circumstances
             ClearMap();
-            MapUI.ColumnCount = map.Columns;
-            MapUI.RowCount = map.Rows;
+
+            MapUI.ColumnCount = GridMap.Columns;
+            MapUI.RowCount = GridMap.Rows;
             MapUI.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
-            for (int i = 0; i < map.Columns; i++)
+            for (int i = 0; i < GridMap.Columns; i++)
             {
-                MapUI.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / map.Columns));
+                MapUI.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / GridMap.Columns));
             }
-            for (int j = 0; j < map.Rows; j++)
+            for (int j = 0; j < GridMap.Rows; j++)
             {
-                MapUI.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / map.Rows));
+                MapUI.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / GridMap.Rows));
             }
 
             DrawMap();
@@ -62,27 +73,11 @@ namespace TreeBasedSearch.Codes
 
         public Panel CreateCell(Cell cell)
         {
-            Panel panel = new Panel
+            return new Panel
             {
                 Dock = DockStyle.Fill,
+                BackColor = _objectColors[cell.Item]
             };
-
-            switch (cell.Item)
-            {
-                case Object.PATH:
-                    panel.BackColor = Color.White;
-                    break;
-                case Object.GOAL:
-                    panel.BackColor = Color.Green;
-                    break;
-                case Object.START:
-                    panel.BackColor = Color.Red;
-                    break;
-                case Object.WALL:
-                    panel.BackColor = Color.DarkGray;
-                    break;
-            }
-            return panel;
         }
 
         public int GetIndex(Cell position)
@@ -92,15 +87,21 @@ namespace TreeBasedSearch.Codes
 
         public void MoveAgent(Cell position)
         {
-            MapUI.Controls[GetIndex(position)].BackColor = Color.Purple;
+            MapUI.Controls[GetIndex(position)].BackColor = _visitedColor;
         }
 
         public void ShowRoute(Cell[] routes)
         {
-            foreach(Cell node in routes)
+            foreach (Cell node in routes)
             {
-                MapUI.Controls[GetIndex(node)].BackColor = Color.SkyBlue;
+                MapUI.Controls[GetIndex(node)].BackColor = _routeColor;
             }
+        }
+
+        public void RedrawMap()
+        {
+            foreach (Cell cell in GridMap.Grid)
+                MapUI.Controls[GetIndex(cell)].BackColor = _objectColors[cell.Item];
         }
     }
 }

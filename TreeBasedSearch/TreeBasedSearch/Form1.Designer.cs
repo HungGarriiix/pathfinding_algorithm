@@ -36,6 +36,7 @@
             btnBFS = new Button();
             btnGBFS = new Button();
             btnAS = new Button();
+            btnFindMap = new Button();
             SuspendLayout();
             // 
             // lblFilePath
@@ -56,7 +57,7 @@
             // 
             // btnGenerateMap
             // 
-            btnGenerateMap.Location = new Point(394, 42);
+            btnGenerateMap.Location = new Point(547, 42);
             btnGenerateMap.Name = "btnGenerateMap";
             btnGenerateMap.Size = new Size(148, 23);
             btnGenerateMap.TabIndex = 2;
@@ -117,11 +118,22 @@
             btnAS.UseVisualStyleBackColor = true;
             btnAS.Click += btnAS_Click;
             // 
+            // btnFindMap
+            // 
+            btnFindMap.Location = new Point(394, 42);
+            btnFindMap.Name = "btnFindMap";
+            btnFindMap.Size = new Size(148, 23);
+            btnFindMap.TabIndex = 8;
+            btnFindMap.Text = "Find map";
+            btnFindMap.UseVisualStyleBackColor = true;
+            btnFindMap.Click += btnFindMap_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1060, 635);
+            Controls.Add(btnFindMap);
             Controls.Add(btnAS);
             Controls.Add(btnGBFS);
             Controls.Add(btnBFS);
@@ -146,5 +158,6 @@
         private Button btnBFS;
         private Button btnGBFS;
         private Button btnAS;
+        private Button btnFindMap;
     }
 }
