@@ -27,12 +27,11 @@ namespace TreeBasedSearch.Codes
             {
                 // Get the prioritized node first (based on lowest F)
                 Node prioritizedNode = nodesInQueue[0];
-                prioritizedNode.CurrentCell.IsVisited = true;
-                _mapUI.MoveAgent(prioritizedNode.CurrentCell);
+                TraverseTo(prioritizedNode);
 
                 if (prioritizedNode.CurrentCell.IsGoal)
                 {
-                    PrintPath(prioritizedNode);
+                    _end = prioritizedNode;
                     return true;
                 }
 

@@ -30,15 +30,14 @@ namespace TreeBasedSearch.Codes
 
                 if (currentNode.CurrentCell.IsGoal)
                 {
-                    PrintPath(currentNode);
+                    _end = currentNode;
                     return true;
                 }
 
                 List<Node> neighbors = GetNeighbors(currentNode);
                 foreach (Node neighbor in neighbors)
                 {
-                    neighbor.CurrentCell.IsVisited = true;
-                    _mapUI.MoveAgent(neighbor.CurrentCell);
+                    TraverseTo(neighbor);
                     queue.Enqueue(neighbor);
                 }
             }

@@ -41,7 +41,7 @@ namespace TreeBasedSearch.Codes
                 walls.Add(wall);
             }
 
-            return new Map(rows, columns, startLoc, goals.ToArray(), walls.ToArray());
+            return new Map(rows, columns, startLoc, goals.ToArray(), walls.ToArray(), filePath);
         }
     }
 }

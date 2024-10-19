@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace TreeBasedSearch.Codes
     {
         protected Map _map;
         protected Node _start;
+        protected Node _end;
         protected IMapUI _mapUI;
+        protected int _traversedNodesNo;
         protected Dictionary<Direction, Coordinate> _directions;
 
         protected PathFinder(Map map, IMapUI mapUI) 
@@ -18,6 +21,8 @@ namespace TreeBasedSearch.Codes
             _map = map;
             _mapUI = mapUI;
             _start = new Node(_map.Start, Direction.NONE);
+            _end = null; // This will be filled after the search is done
+            _traversedNodesNo = 0;
 
             _directions = new Dictionary<Direction, Coordinate>
             {
@@ -44,15 +49,24 @@ namespace TreeBasedSearch.Codes
         {
             // Re-draw the map UI so that it won't overlapses other algorithm path
             _mapUI.RedrawMap();
+
             // Start moving from the start node
-            if (!Move(_start))
-            {
-                Console.WriteLine("No path found.");
-            }
+            if (Move(_start))
+                PrintPath(_end);
+            else
+                PrintNotFound();
+
             _map.ResetVisited();
         }
 
-        public List<Node> GetNeighbors(Node source)
+        protected void TraverseTo(Node node)
+        {
+            node.CurrentCell.IsVisited = true;
+            _traversedNodesNo++;
+            _mapUI.MoveAgent(node.CurrentCell);
+        }
+
+        protected List<Node> GetNeighbors(Node source)
         {
             List<Node> neighbors = new List<Node>();
             foreach (var direction in _directions)
@@ -70,24 +84,41 @@ namespace TreeBasedSearch.Codes
             return neighbors;
         }
 
-        public void PrintPath(Node goalNode)
+        private void PrintPath(Node goalNode)
         {
             List<string> path = new List<string>();
             List<Cell> pathCells = new List<Cell>();
             Node current = goalNode;
-            Console.WriteLine(goalNode.Distance);
 
             // Now traverse from the goal node to the start node
             while (current != null)
             {
-                path.Add(current.Direction.ToString());
+                if (current.Direction != Direction.NONE)    // No need to add start node at this point
+                    path.Add(current.Direction.ToString());
                 pathCells.Add(current.CurrentCell);
                 current = current.Parent;
             }
             path.Reverse();  // Reverse the path to get the correct order
             pathCells.Reverse(); // Same goes here
+
             _mapUI.ShowRoute(pathCells.ToArray());
-            Console.WriteLine($"[ {string.Join(", ", path)} ]");
+
+            // Format (from my Uni named Swin)
+            // filename method
+            // goal number_of_nodes
+            // path
+            Console.WriteLine($"{_map.FilePath} {this.GetType().Name}");
+            Console.WriteLine($"<Node ({goalNode.CurrentCell.X}, {goalNode.CurrentCell.Y})> {_traversedNodesNo}");
+            Console.WriteLine($"[ {string.Join(", ", path)} ]\n");
+        }
+
+        private void PrintNotFound()
+        {
+            // Format (from my Uni named Swin)
+            // filename method
+            // No goal is reachable; number_of_nodes
+            Console.WriteLine($"{_map.FilePath} {this.GetType().Name}");
+            Console.WriteLine($"No goal is reachable; {_traversedNodesNo}");
         }
     }
 }

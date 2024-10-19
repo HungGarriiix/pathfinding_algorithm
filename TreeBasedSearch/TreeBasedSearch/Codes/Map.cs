@@ -11,13 +11,15 @@ namespace TreeBasedSearch.Codes
         private int _rowsNo;
         private int _columnsNo;
         private Cell[,] _grid;
+        private string _filePath;
 
-        public Map(int rows, int columns, Coordinate start, Coordinate[] goals, Coordinate[] walls)
+        public Map(int rows, int columns, Coordinate start, Coordinate[] goals, Coordinate[] walls, string filePath = "") // Cannot string.Empty because it is not compiler constant.
         {
             Rows = rows;
             Columns = columns;
             Grid = new Cell[Rows, Columns];
             Start = null;
+            _filePath = filePath;
 
             CreateMap(start, goals, walls);
         }
@@ -38,6 +40,11 @@ namespace TreeBasedSearch.Codes
         {
             get { return _grid; }
             private set { _grid = value; }
+        }
+
+        public string FilePath
+        {
+            get { return _filePath; }
         }
 
         public Cell Start { get; private set; }

@@ -21,12 +21,11 @@ namespace TreeBasedSearch.Codes
         public override bool Move(Node source)
         {
             // Imagine this like Depth First Search with heuristic
-            source.CurrentCell.IsVisited = true;
-            _mapUI.MoveAgent(source.CurrentCell);
+            TraverseTo(source);
 
             if (source.CurrentCell.IsGoal)
             {
-                PrintPath(source);
+                _end = source;
                 return true;
             }
 

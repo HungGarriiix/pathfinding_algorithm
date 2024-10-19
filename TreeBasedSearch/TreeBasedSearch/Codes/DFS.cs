@@ -18,12 +18,11 @@ namespace TreeBasedSearch.Codes
 
         public override bool Move(Node source)
         {
-            source.CurrentCell.IsVisited = true;
-            _mapUI.MoveAgent(source.CurrentCell);
+            TraverseTo(source);
 
             if (source.CurrentCell.IsGoal)
             {
-                PrintPath(source);
+                _end = source;
                 return true;
             }
 
