@@ -20,11 +20,12 @@ namespace TreeBasedSearch
                 IMapParse text = new TextFileParse();
                 map = text.ParseMap(tbxFilePath.Text);
                 tlp_ui = new MapInTableLayoutPanel(map, tlpMap);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void btnDFS_Click(object sender, EventArgs e)
@@ -34,6 +35,8 @@ namespace TreeBasedSearch
                 pf = new DFS(map, tlp_ui);
                 pf.Search();
             }
+            else
+                AlertNoMapLoaded();
         }
 
         private void btnBFS_Click(object sender, EventArgs e)
@@ -43,6 +46,8 @@ namespace TreeBasedSearch
                 pf = new BFS(map, tlp_ui);
                 pf.Search();
             }
+            else
+                AlertNoMapLoaded();
         }
 
         private void btnGBFS_Click(object sender, EventArgs e)
@@ -52,6 +57,8 @@ namespace TreeBasedSearch
                 pf = new GBFS(map, tlp_ui);
                 pf.Search();
             }
+            else
+                AlertNoMapLoaded();
         }
 
         private void btnAS_Click(object sender, EventArgs e)
@@ -61,6 +68,19 @@ namespace TreeBasedSearch
                 pf = new AS(map, tlp_ui);
                 pf.Search();
             }
+            else
+                AlertNoMapLoaded();
+        }
+
+        private void btnCUS2_Click(object sender, EventArgs e)
+        {
+            if (map != null)
+            {
+                pf = new CUS2(map, tlp_ui);
+                pf.Search();
+            }
+            else
+                AlertNoMapLoaded();
         }
 
         private void btnFindMap_Click(object sender, EventArgs e)
@@ -73,6 +93,11 @@ namespace TreeBasedSearch
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 tbxFilePath.Text = openFileDialog.FileName;
+        }
+
+        private void AlertNoMapLoaded()
+        {
+            MessageBox.Show("No map loaded yet!");
         }
     }
 }

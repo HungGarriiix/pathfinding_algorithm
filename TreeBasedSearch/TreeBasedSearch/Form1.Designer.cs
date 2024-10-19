@@ -37,6 +37,8 @@
             btnGBFS = new Button();
             btnAS = new Button();
             btnFindMap = new Button();
+            btnCUS1 = new Button();
+            btnCUS2 = new Button();
             SuspendLayout();
             // 
             // lblFilePath
@@ -128,11 +130,32 @@
             btnFindMap.UseVisualStyleBackColor = true;
             btnFindMap.Click += btnFindMap_Click;
             // 
+            // btnCUS1
+            // 
+            btnCUS1.Location = new Point(701, 71);
+            btnCUS1.Name = "btnCUS1";
+            btnCUS1.Size = new Size(349, 23);
+            btnCUS1.TabIndex = 9;
+            btnCUS1.Text = "Custom 1 (Dijkstra)";
+            btnCUS1.UseVisualStyleBackColor = true;
+            // 
+            // btnCUS2
+            // 
+            btnCUS2.Location = new Point(701, 100);
+            btnCUS2.Name = "btnCUS2";
+            btnCUS2.Size = new Size(349, 23);
+            btnCUS2.TabIndex = 10;
+            btnCUS2.Text = "Custom 2: Dijkstra Search";
+            btnCUS2.UseVisualStyleBackColor = true;
+            btnCUS2.Click += btnCUS2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1060, 635);
+            Controls.Add(btnCUS2);
+            Controls.Add(btnCUS1);
             Controls.Add(btnFindMap);
             Controls.Add(btnAS);
             Controls.Add(btnGBFS);
@@ -159,5 +182,7 @@
         private Button btnGBFS;
         private Button btnAS;
         private Button btnFindMap;
+        private Button btnCUS1;
+        private Button btnCUS2;
     }
 }
