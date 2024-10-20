@@ -136,8 +136,9 @@
             btnCUS1.Name = "btnCUS1";
             btnCUS1.Size = new Size(349, 23);
             btnCUS1.TabIndex = 9;
-            btnCUS1.Text = "Custom 1 (Dijkstra)";
+            btnCUS1.Text = "Custom 1: Dijkstra Search (Uninformed)";
             btnCUS1.UseVisualStyleBackColor = true;
+            btnCUS1.Click += btnCUS1_Click;
             // 
             // btnCUS2
             // 

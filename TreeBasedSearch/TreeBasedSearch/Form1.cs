@@ -72,6 +72,17 @@ namespace TreeBasedSearch
                 AlertNoMapLoaded();
         }
 
+        private void btnCUS1_Click(object sender, EventArgs e)
+        {
+            if (map != null)
+            {
+                pf = new CUS1(map, tlp_ui);
+                pf.Search();
+            }
+            else
+                AlertNoMapLoaded();
+        }
+
         private void btnCUS2_Click(object sender, EventArgs e)
         {
             if (map != null)
