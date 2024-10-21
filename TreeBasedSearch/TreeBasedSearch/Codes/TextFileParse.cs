@@ -20,7 +20,7 @@ namespace TreeBasedSearch.Codes
 
             // Parse start location
             string[] startLoc_text = lines[1].Trim('(', ')').Split(',');
-            Coordinate startLoc = new Coordinate(startLoc_text, 2);
+            Coordinate startLoc = new Coordinate(startLoc_text);
 
             // Parse goal locations
             List<Coordinate> goals = new List<Coordinate>();
@@ -28,7 +28,7 @@ namespace TreeBasedSearch.Codes
             foreach (string goal_line in goals_text)
             {
                 string[] goal_text = goal_line.Trim('(', ' ', ')').Split(',');
-                Coordinate goal = new Coordinate(goal_text, 2);
+                Coordinate goal = new Coordinate(goal_text);
                 goals.Add(goal);
             }
 
@@ -37,11 +37,11 @@ namespace TreeBasedSearch.Codes
             for (int i = 3; i < lines.Length; i++)
             {
                 string[] wall_text = lines[i].Trim('(', ')').Split(',');
-                Coordinate wall = new Coordinate(wall_text, 4);
+                Coordinate wall = new Coordinate(wall_text);
                 walls.Add(wall);
             }
 
-            return new Map(rows, columns, startLoc, goals.ToArray(), walls.ToArray());
+            return new Map(rows, columns, startLoc, goals.ToArray(), walls.ToArray(), filePath);
         }
     }
 }

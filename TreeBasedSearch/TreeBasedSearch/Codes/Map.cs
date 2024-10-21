@@ -11,12 +11,15 @@ namespace TreeBasedSearch.Codes
         private int _rowsNo;
         private int _columnsNo;
         private Cell[,] _grid;
+        private string _filePath;
 
-        public Map(int rows, int columns, Coordinate start, Coordinate[] goals, Coordinate[] walls)
+        public Map(int rows, int columns, Coordinate start, Coordinate[] goals, Coordinate[] walls, string filePath = "") // Cannot string.Empty because it is not compiler constant.
         {
             Rows = rows;
             Columns = columns;
             Grid = new Cell[Rows, Columns];
+            Start = null;
+            _filePath = filePath;
 
             CreateMap(start, goals, walls);
         }
@@ -39,13 +42,25 @@ namespace TreeBasedSearch.Codes
             private set { _grid = value; }
         }
 
+        public string FilePath
+        {
+            get { return _filePath; }
+        }
+
+        public Cell Start { get; private set; }
+        public Cell[] Goals { get; private set; }
+        public int MaxX { get { return _rowsNo - 1; } }
+        public int MinX { get { return 0; } }
+        public int MaxY { get { return _columnsNo - 1; } }
+        public int MinY { get { return 0; } }
+
         private void CreateMap(Coordinate start, Coordinate[] goals, Coordinate[] walls)
         {
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
                 {
-                    _grid[i, j] = new Cell(i, j); // Default as free space (null)
+                    _grid[i, j] = new Cell(i, j); // Default as free space (Path)
                 }
             }
 
@@ -58,15 +73,19 @@ namespace TreeBasedSearch.Codes
         {
             Cell startCell = new Cell(start.X, start.Y, Object.START);
             _grid[start.X, start.Y] = startCell;
+            Start = startCell;
         }
 
         private void AddGoals(Coordinate[] goals)
         {
+            List<Cell> goalsList = new List<Cell>();
             foreach (Coordinate goal in goals)
             {
                 Cell goalCell = new Cell(goal.X, goal.Y, Object.GOAL);
                 _grid[goal.X, goal.Y] = goalCell;
+                goalsList.Add(goalCell);
             }
+            Goals = goalsList.ToArray();
         }
 
         private void AddObstacles(Coordinate[] walls)
@@ -80,6 +99,35 @@ namespace TreeBasedSearch.Codes
                         Cell wallCell = new Cell(x, y, Object.WALL);
                         Grid[x, y] = wallCell;
                     }
+                }
+            }
+        }
+
+        public bool IsAvailable(Coordinate coords)
+        {
+            // Check for out of bound
+            if (!(coords.X <= MaxX && coords.X >= MinX))
+                return false;
+
+            if (!(coords.Y <= MaxY && coords.Y >= MinY))
+                return false;
+
+            // Check for other status
+            Cell loc = Grid[coords.X, coords.Y];
+            /*return loc.IsVisited == false || loc.IsBlocked == false;*/
+            if (loc.IsVisited) return false;
+            if (loc.IsBlocked) return false;
+
+            return true;
+        }
+
+        public void ResetVisited()
+        {
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    _grid[i, j].IsVisited = false;
                 }
             }
         }

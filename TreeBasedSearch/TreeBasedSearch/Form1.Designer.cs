@@ -31,6 +31,14 @@
             lblFilePath = new Label();
             tbxFilePath = new TextBox();
             btnGenerateMap = new Button();
+            tlpMap = new TableLayoutPanel();
+            btnDFS = new Button();
+            btnBFS = new Button();
+            btnGBFS = new Button();
+            btnAS = new Button();
+            btnFindMap = new Button();
+            btnCUS1 = new Button();
+            btnCUS2 = new Button();
             SuspendLayout();
             // 
             // lblFilePath
@@ -51,7 +59,7 @@
             // 
             // btnGenerateMap
             // 
-            btnGenerateMap.Location = new Point(394, 42);
+            btnGenerateMap.Location = new Point(547, 42);
             btnGenerateMap.Name = "btnGenerateMap";
             btnGenerateMap.Size = new Size(148, 23);
             btnGenerateMap.TabIndex = 2;
@@ -59,11 +67,102 @@
             btnGenerateMap.UseVisualStyleBackColor = true;
             btnGenerateMap.Click += btnGenerateMap_Click;
             // 
+            // tlpMap
+            // 
+            tlpMap.ColumnCount = 2;
+            tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpMap.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpMap.Location = new Point(12, 130);
+            tlpMap.Name = "tlpMap";
+            tlpMap.RowCount = 2;
+            tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpMap.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpMap.Size = new Size(1038, 496);
+            tlpMap.TabIndex = 3;
+            // 
+            // btnDFS
+            // 
+            btnDFS.Location = new Point(394, 71);
+            btnDFS.Name = "btnDFS";
+            btnDFS.Size = new Size(148, 23);
+            btnDFS.TabIndex = 4;
+            btnDFS.Text = "Depth first search";
+            btnDFS.UseVisualStyleBackColor = true;
+            btnDFS.Click += btnDFS_Click;
+            // 
+            // btnBFS
+            // 
+            btnBFS.Location = new Point(547, 71);
+            btnBFS.Name = "btnBFS";
+            btnBFS.Size = new Size(148, 23);
+            btnBFS.TabIndex = 5;
+            btnBFS.Text = "Breadth first search";
+            btnBFS.UseVisualStyleBackColor = true;
+            btnBFS.Click += btnBFS_Click;
+            // 
+            // btnGBFS
+            // 
+            btnGBFS.Location = new Point(350, 100);
+            btnGBFS.Name = "btnGBFS";
+            btnGBFS.Size = new Size(192, 23);
+            btnGBFS.TabIndex = 6;
+            btnGBFS.Text = "Greedy best first search";
+            btnGBFS.UseVisualStyleBackColor = true;
+            btnGBFS.Click += btnGBFS_Click;
+            // 
+            // btnAS
+            // 
+            btnAS.Location = new Point(547, 101);
+            btnAS.Name = "btnAS";
+            btnAS.Size = new Size(148, 23);
+            btnAS.TabIndex = 7;
+            btnAS.Text = "A* star search";
+            btnAS.UseVisualStyleBackColor = true;
+            btnAS.Click += btnAS_Click;
+            // 
+            // btnFindMap
+            // 
+            btnFindMap.Location = new Point(394, 42);
+            btnFindMap.Name = "btnFindMap";
+            btnFindMap.Size = new Size(148, 23);
+            btnFindMap.TabIndex = 8;
+            btnFindMap.Text = "Find map";
+            btnFindMap.UseVisualStyleBackColor = true;
+            btnFindMap.Click += btnFindMap_Click;
+            // 
+            // btnCUS1
+            // 
+            btnCUS1.Location = new Point(701, 71);
+            btnCUS1.Name = "btnCUS1";
+            btnCUS1.Size = new Size(349, 23);
+            btnCUS1.TabIndex = 9;
+            btnCUS1.Text = "Custom 1: Dijkstra Search (Uninformed)";
+            btnCUS1.UseVisualStyleBackColor = true;
+            btnCUS1.Click += btnCUS1_Click;
+            // 
+            // btnCUS2
+            // 
+            btnCUS2.Location = new Point(701, 100);
+            btnCUS2.Name = "btnCUS2";
+            btnCUS2.Size = new Size(349, 23);
+            btnCUS2.TabIndex = 10;
+            btnCUS2.Text = "Custom 2: Iterative Deepening A* (Informed)";
+            btnCUS2.UseVisualStyleBackColor = true;
+            btnCUS2.Click += btnCUS2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1060, 635);
+            Controls.Add(btnCUS2);
+            Controls.Add(btnCUS1);
+            Controls.Add(btnFindMap);
+            Controls.Add(btnAS);
+            Controls.Add(btnGBFS);
+            Controls.Add(btnBFS);
+            Controls.Add(btnDFS);
+            Controls.Add(tlpMap);
             Controls.Add(btnGenerateMap);
             Controls.Add(tbxFilePath);
             Controls.Add(lblFilePath);
@@ -78,5 +177,13 @@
         private Label lblFilePath;
         private TextBox tbxFilePath;
         private Button btnGenerateMap;
+        private TableLayoutPanel tlpMap;
+        private Button btnDFS;
+        private Button btnBFS;
+        private Button btnGBFS;
+        private Button btnAS;
+        private Button btnFindMap;
+        private Button btnCUS1;
+        private Button btnCUS2;
     }
 }
