@@ -27,6 +27,7 @@ namespace TreeBasedSearch.Codes
             };
             // Clean the map everytime a new map is loaded
             // to ensure no fautly under any circumstances
+            MapUI.SuspendLayout();
             ClearMap();
 
             MapUI.ColumnCount = GridMap.Columns;
@@ -43,6 +44,7 @@ namespace TreeBasedSearch.Codes
             }
 
             DrawMap();
+            MapUI.ResumeLayout(true);
         }
 
         public Map GridMap { get; set; }
@@ -54,6 +56,7 @@ namespace TreeBasedSearch.Codes
             {
                 MapUI.Controls[i].Dispose();
             }
+            
             MapUI.Controls.Clear();
             MapUI.ColumnStyles.Clear();
             MapUI.RowStyles.Clear();
