@@ -146,7 +146,7 @@
             btnCUS2.Name = "btnCUS2";
             btnCUS2.Size = new Size(349, 23);
             btnCUS2.TabIndex = 10;
-            btnCUS2.Text = "Custom 2: Dijkstra Search";
+            btnCUS2.Text = "Custom 2: Iterative Deepening A* (Informed)";
             btnCUS2.UseVisualStyleBackColor = true;
             btnCUS2.Click += btnCUS2_Click;
             // 

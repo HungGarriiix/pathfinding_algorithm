@@ -20,6 +20,7 @@ namespace TreeBasedSearch.Codes
         public int Y { get; set; }
         public Object Item { get; set; }
         public bool IsVisited { get; set; }
+        public bool IsStart { get { return Item == Object.START; } }
         public bool IsGoal { get { return Item == Object.GOAL; } }
         public bool IsBlocked { get { return Item == Object.WALL; } }
     }

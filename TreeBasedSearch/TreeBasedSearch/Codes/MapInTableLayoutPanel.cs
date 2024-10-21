@@ -12,6 +12,7 @@ namespace TreeBasedSearch.Codes
         private Dictionary<Object, Color> _objectColors;
         private Color _visitedColor = Color.Purple;
         private Color _routeColor = Color.SkyBlue;
+        private const int ANIM_DELAY = 500; 
 
         public MapInTableLayoutPanel(Map map, TableLayoutPanel mapUI) 
         {
@@ -87,15 +88,15 @@ namespace TreeBasedSearch.Codes
 
         public void MoveAgent(Cell position)
         {
-            MapUI.Controls[GetIndex(position)].BackColor = _visitedColor;
+            if (!position.IsGoal && !position.IsStart)
+                MapUI.Controls[GetIndex(position)].BackColor = _visitedColor;
         }
 
         public void ShowRoute(Cell[] routes)
         {
             foreach (Cell node in routes)
-            {
-                MapUI.Controls[GetIndex(node)].BackColor = _routeColor;
-            }
+                if (!node.IsGoal && !node.IsStart)
+                    MapUI.Controls[GetIndex(node)].BackColor = _routeColor;
         }
 
         public void RedrawMap()

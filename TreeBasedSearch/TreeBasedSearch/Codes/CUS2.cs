@@ -8,9 +8,9 @@ namespace TreeBasedSearch.Codes
 {
     public class CUS2: PathFinder
     {
-        // Algorithm: Dijkstra Search
-        // Traversing nodes with lowest distance to find the shortest path with "brain".
-        // P/s: This algorithm focuses on precision than performance (certainly faster than others besides GBFS)
+        // Algorithm: Iterative Deepening A* (IDA*)
+        // Similar to A*, with some memory constrains applied
+        // P/s: This algorithm focuses on memory management than performance, while the precision of A* still kept
         public CUS2(Map map, IMapUI mapUI) : base(map, mapUI)
         {
 
@@ -18,7 +18,7 @@ namespace TreeBasedSearch.Codes
 
         public override bool Move(Node source)
         {
-            // Initial threshold is the heuristic value from the start node to the goal
+            // Initial threshold is the heuristic value from the start node to one of the goal
             int threshold = GetHeuristic(source.CurrentCell, _map.Goals);
             Console.WriteLine(threshold);
             while (true)
@@ -28,35 +28,29 @@ namespace TreeBasedSearch.Codes
                 Stack<Node> stack = new Stack<Node>();
                 stack.Push(source);
 
-                // Set to track visited cells during this iteration
                 HashSet<Cell> visitedInCurrentIteration = new HashSet<Cell>();
                 visitedInCurrentIteration.Add(source.CurrentCell);
 
                 while (stack.Count > 0)
                 {
                     Node node = stack.Pop();
-                    Console.WriteLine($"To {node.CurrentCell.X}, {node.CurrentCell.Y} with h = {node.Heuristic} and min {min}");
-                    // Calculate F = G + H (G: current path cost, H: heuristic)
                     int f = node.Distance + node.Heuristic;
 
                     if (f > threshold)
                     {
                         // If f exceeds threshold, track it as a candidate for the next iteration
                         min = Math.Min(min, f);
-                        Console.WriteLine($"Prunned and min = {min}");
                         continue;
                     }
 
                     TraverseTo(node);
 
-                    // If the goal is reached, print the path and return true
                     if (node.CurrentCell.IsGoal)
                     {
                         _end = node;
                         return true;
                     }
 
-                    // Get neighbors for expansion
                     List<Node> neighbors = GetNeighbors(node);
 
                     foreach (var neighbor in neighbors)
@@ -77,7 +71,7 @@ namespace TreeBasedSearch.Codes
                 }
 
                 threshold = min;
-                // Clear visitedInCurrentIteration to allow a fresh exploration with the new threshold
+                // Clear the map to allow a fresh exploration with the new threshold
                 visitedInCurrentIteration.Clear();
                 _map.ResetVisited();
             }
